@@ -41,4 +41,10 @@ const MOVIE_DETAIL = gql`
   ${movieFragment}
 `;
 
-export { FETCH_MOVIE, MOVIE_DETAIL };
+const GET_FILTER = gql`
+  query getFilter {
+    filter @client
+  }
+`;
+
+export { FETCH_MOVIE, MOVIE_DETAIL, GET_FILTER };

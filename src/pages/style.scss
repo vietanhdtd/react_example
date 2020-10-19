@@ -1,17 +1,24 @@
-.detail-page{
+.detail-page {
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  .link {
-    cursor: pointer;
-    transition: color .5s;
-    display: inline;
-    padding-bottom: 10px;
+  .go-back{
+    min-width: 60vw;
+    padding: 0 !important;
+      transition: color .5s;
     &:hover {
-    color: rgb(163, 129, 56) !important;
+      color: rgb(163, 129, 56) !important;
+    }
+    .back-img{
+       width: 30px;
+       height: 20px 
+    }
+    .link {
+      cursor: pointer;
+      display: inline;
+      padding-bottom: 10px;
   }
-
   }
   .content{
     background-color: black;
@@ -19,16 +26,18 @@
     box-shadow: 0 0 25px rgba(151, 151, 151, 0.3);
     border-radius: 10px;
     margin-top: 10px;
+    padding: 0 !important;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
     width: auto;
-    min-width: 70vw;
+    min-width: 60vw;
     .movie-info{
       display: flex;
       justify-content: center;
       flex-direction: column;
+      padding: 0 20px !important;
     }
   }
   .dimmer-bg {
@@ -53,7 +62,30 @@
   -webkit-filter: blur(4px);
 
 }
-p{
+p {
   color:white
 }
+}
+
+.load-more-text {
+  transform: translateY(-0.35em);
+  transform: translateY(0.35em);
+  animation: move 1.4s infinite;
+  -webkit-animation: move 1.4s infinite;
+}
+@keyframes move {
+  from {
+    transform: translateY(1.35em);
+  }
+  to {
+    transform: translateY(-1.35em);
+  }
+}
+@-webkit-keyframes move {
+  from {
+    transform: translateY(1.35em);
+  }
+  to {
+    transform: translateY(-1.35em);
+  }
 }

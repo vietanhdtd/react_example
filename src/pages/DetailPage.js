@@ -4,6 +4,7 @@ import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Image from "react-bootstrap/Image";
+import Button from "react-bootstrap/Button";
 import { useQuery } from "@apollo/react-hooks";
 import { MOVIE_DETAIL } from "../configs/queries";
 import "./style.scss";
@@ -38,6 +39,7 @@ export default function DetailPage() {
     overview,
     release_date,
     original_language,
+    original_title,
     vote_average,
   } = data?.details || [];
 
@@ -50,52 +52,51 @@ export default function DetailPage() {
         }}
       />
       {!loading && (
-        <div className="container">
-          <p className="h5 text-warning link" onClick={() => history.goBack()}>
-            go back
-          </p>
+        <div className="container go-back">
+          <Button variant="warning" size="sm" onClick={() => history.goBack()}>
+            Go Back
+          </Button>
         </div>
       )}
       <Container className="content">
-        <Row>
-          {loading ? (
-            <Spinner animation="border" variant="warning" />
-          ) : (
-            <>
-              <Col xs={4} style={{ paddingLeft: 0 }}>
-                <Image
-                  src={poster_path}
-                  style={{ width: 350, height: 515 }}
-                  onError={handleImageError}
-                />
-              </Col>
-              <Col className="movie-info">
-                <p className="display-3 text-warning">{title}</p>
-                <p className="h6 pb-4">{overview}</p>
-                <Row>
-                  <Col>
-                    <p className="h6 text-white-50">Release Date</p>
-                    <p className="h4 text-warning">{release_date}</p>
-                  </Col>
-                  <Col>
-                    <p className="h6 text-white-50">Vote Average</p>
-                    <p className="h4 text-warning">{vote_average}</p>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col>
-                    <p className="h6 text-white-50">Vote Count</p>
-                    <p className="h4 text-warning">{vote_count}</p>
-                  </Col>
-                  <Col>
-                    <p className="h6 text-white-50">Original Language</p>
-                    <p className="h4 text-warning">{original_language}</p>
-                  </Col>
-                </Row>
-              </Col>
-            </>
-          )}
-        </Row>
+        {loading ? (
+          <Spinner animation="border" variant="warning" />
+        ) : (
+          <>
+            <Col xs={4} style={{ paddingLeft: 0 }}>
+              <Image
+                src={poster_path}
+                style={{ width: 350, height: 515 }}
+                onError={handleImageError}
+              />
+            </Col>
+            <Col className="movie-info">
+              <p className="display-4 text-warning">{title}</p>
+              <p className="h5 text-warning pb-3">{original_title}</p>
+              <p className="h6 pb-4">{overview}</p>
+              <Row>
+                <Col>
+                  <p className="h6 text-white-50">Release Date</p>
+                  <p className="h4 text-warning">{release_date}</p>
+                </Col>
+                <Col>
+                  <p className="h6 text-white-50">Vote Average</p>
+                  <p className="h4 text-warning">{vote_average}</p>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <p className="h6 text-white-50">Vote Count</p>
+                  <p className="h4 text-warning">{vote_count}</p>
+                </Col>
+                <Col>
+                  <p className="h6 text-white-50">Original Language</p>
+                  <p className="h4 text-warning">{original_language}</p>
+                </Col>
+              </Row>
+            </Col>
+          </>
+        )}
       </Container>
       <div className="dimmer-bg" />
     </div>

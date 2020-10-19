@@ -11,9 +11,9 @@ import Alert from "react-bootstrap/Alert";
 
 export default function HomePage() {
   const history = useHistory();
-  const [show, setShow] = useState(false);
-  const [bottomRef, setBottomRef] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
+  const [bottomRef, setBottomRef] = useState(null);
   const prevY = useRef(0);
   const page = useRef(1);
 
@@ -61,7 +61,7 @@ export default function HomePage() {
         const firstEntry = entries[0];
         const y = firstEntry.boundingClientRect.y;
         if (prevY.current > y) {
-          timeout = setTimeout(loadMore, 800);
+          timeout = setTimeout(loadMore, 1000);
         }
         prevY.current = y;
       },
@@ -91,7 +91,7 @@ export default function HomePage() {
   };
 
   const toggleModal = () => {
-    setShow((show) => !show);
+    setShowModal((showModal) => !showModal);
   };
 
   const transformData = (type, data) => {
@@ -110,7 +110,6 @@ export default function HomePage() {
   return (
     <>
       <NavBar toggleModal={toggleModal} />
-
       <Container>
         {nowPlaying && (
           <>
@@ -135,22 +134,34 @@ export default function HomePage() {
               <MovieCard data={item} onSelectMovie={onSelectMovie} />
             </Col>
           ))}
+          {nowPlaying?.total && (
+            <p
+              className="h5 pt-2 text-warning container"
+              style={{ textAlign: "end" }}
+            >
+              <span className="text-white">Total </span>
+              {
+                nowPlaying?.movies.length
+              } <span className="text-white">of</span> {nowPlaying?.total}{" "}
+              <span className="text-white">movies</span>
+            </p>
+          )}
         </Row>
 
         <div
           ref={setBottomRef}
-          style={{ height: 200 }}
+          style={{ height: 250 }}
           className="d-flex justify-content-center pt-5"
         >
           {isLoading ? (
             <Spinner animation="border" variant="warning" />
           ) : (
-            <p className="h6 text-white-50">
+            <p className="h6 text-warning load-more-text">
               Scroll down to load more movies ...
             </p>
           )}
         </div>
-        <Modal centered show={show} toggleModal={toggleModal} />
+        {showModal && <Modal centered show={showModal} toggle={toggleModal} />}
       </Container>
     </>
   );

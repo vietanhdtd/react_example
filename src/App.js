@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Switch } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import DetailPage from "./pages/DetailPage";
 import CommonRoute from "./components/CommonRoute";
-import "./App.css";
 
 function App() {
   return (

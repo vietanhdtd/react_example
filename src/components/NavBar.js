@@ -10,9 +10,9 @@ export default function NavBar({ toggleModal }) {
         <Navbar.Brand href="/" className="text-warning">
           It's Movie Time
         </Navbar.Brand>
-        {/* <Button variant="dark" onClick={toggleModal}>
-          modal
-        </Button> */}
+        <Button variant="dark" onClick={toggleModal}>
+          Setting
+        </Button>
       </Container>
     </Navbar>
   );
