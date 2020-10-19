@@ -1,6 +1,8 @@
 
 ## Code Challenge 2:
 
+preview link : https://movies-graphql.netlify.app/
+
 ### Description:
 
 - Call GraphQL API](https://ion-movies.herokuapp.com) and show Now
