@@ -29,7 +29,11 @@ export default function DetailPage() {
       "https://developers.google.com/maps/documentation/streetview/images/error-image-generic.png";
   };
 
-  if (error) return <p>Error :(</p>;
+  const goBack = () => {
+    history.goBack();
+  };
+
+  if (error) goBack();
 
   const {
     vote_count,
@@ -53,7 +57,7 @@ export default function DetailPage() {
       />
       {!loading && (
         <div className="container go-back">
-          <Button variant="warning" size="sm" onClick={() => history.goBack()}>
+          <Button variant="warning" size="sm" onClick={goBack}>
             Go Back
           </Button>
         </div>
